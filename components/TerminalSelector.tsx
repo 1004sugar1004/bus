@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import type { Terminal } from '../types';
-import { fetchTerminals } from '../services/geminiService';
+import type { Terminal } from '../types.js';
+import { fetchTerminals } from '../services/geminiService.js';
 
 interface TerminalSelectorProps {
   onRouteSelect: (departure: Terminal, arrival: Terminal) => void;

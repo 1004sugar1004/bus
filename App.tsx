@@ -1,13 +1,14 @@
+
 import React, { useState, useCallback } from 'react';
-import { BookingStep } from './types';
-import type { BookingDetails, BusSchedule, Terminal } from './types';
-import TerminalSelector from './components/TerminalSelector';
-import DateSelector from './components/DateSelector';
-import BusList from './components/BusList';
-import SeatSelector from './components/SeatSelector';
-import BookingSummary from './components/BookingSummary';
-import Payment from './components/Payment';
-import Ticket from './components/Ticket';
+import { BookingStep } from './types.js';
+import type { BookingDetails, BusSchedule, Terminal } from './types.js';
+import TerminalSelector from './components/TerminalSelector.js';
+import DateSelector from './components/DateSelector.js';
+import BusList from './components/BusList.js';
+import SeatSelector from './components/SeatSelector.js';
+import BookingSummary from './components/BookingSummary.js';
+import Payment from './components/Payment.js';
+import Ticket from './components/Ticket.js';
 
 const App: React.FC = () => {
   const [bookingStep, setBookingStep] = useState<BookingStep>(BookingStep.SELECT_ROUTE);

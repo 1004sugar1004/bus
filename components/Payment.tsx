@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import type { BookingDetails } from '../types';
+import type { BookingDetails } from '../types.js';
 
 interface PaymentProps {
   bookingDetails: BookingDetails;

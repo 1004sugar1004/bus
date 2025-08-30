@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import type { BusSchedule, BookingDetails } from '../types';
-import { fetchSchedules } from '../services/geminiService';
+import type { BusSchedule, BookingDetails } from '../types.js';
+import { fetchSchedules } from '../services/geminiService.js';
 
 interface BusListProps {
   bookingDetails: BookingDetails;

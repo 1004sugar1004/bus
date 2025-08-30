@@ -1,5 +1,6 @@
+
 import React, { useState, useMemo, useCallback } from 'react';
-import type { BusSchedule } from '../types';
+import type { BusSchedule } from '../types.js';
 
 interface SeatSelectorProps {
   bus: BusSchedule;

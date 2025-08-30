@@ -1,6 +1,6 @@
 
 import React from 'react';
-import type { BookingDetails } from '../types';
+import type { BookingDetails } from '../types.js';
 
 interface BookingSummaryProps {
   bookingDetails: BookingDetails;

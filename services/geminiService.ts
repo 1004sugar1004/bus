@@ -1,6 +1,6 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
-import type { Terminal, BusSchedule } from '../types';
+import type { Terminal, BusSchedule } from '../types.js';
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 

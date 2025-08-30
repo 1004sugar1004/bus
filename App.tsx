@@ -85,6 +85,8 @@ const App: React.FC = () => {
       default:
         return <TerminalSelector onRouteSelect={handleRouteSelect} />;
     }
+    // If a conditional case fails and breaks, we end up here, safely resetting the flow.
+    return <TerminalSelector onRouteSelect={handleRouteSelect} />;
   };
 
   return (

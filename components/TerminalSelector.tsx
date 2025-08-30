@@ -49,12 +49,12 @@ const TerminalSelector: React.FC<TerminalSelectorProps> = ({ onRouteSelect }) =>
     const loadTerminals = async () => {
       try {
         setIsLoading(true);
+        setError(null);
         const fetchedTerminals = await fetchTerminals();
         setTerminals(fetchedTerminals);
-        setError(null);
       } catch (e) {
-        setError('터미널 정보를 불러오는 데 실패했습니다. 잠시 후 다시 시도해주세요.');
         console.error(e);
+        setError('터미널 정보를 불러오는 데 실패했습니다. 잠시 후 다시 시도해주세요.');
       } finally {
         setIsLoading(false);
       }
@@ -81,7 +81,7 @@ const TerminalSelector: React.FC<TerminalSelectorProps> = ({ onRouteSelect }) =>
   }
 
   if (error) {
-    return <div className="text-center text-red-500 font-bold text-xl">{error}</div>;
+    return <div className="text-center text-red-500 font-bold text-xl p-8">{error}</div>;
   }
 
   return (

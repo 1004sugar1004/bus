@@ -64,29 +64,44 @@ const App: React.FC = () => {
     switch (bookingStep) {
       case BookingStep.SELECT_ROUTE:
         return <TerminalSelector onRouteSelect={handleRouteSelect} />;
+      
       case BookingStep.SELECT_DATE:
         return <DateSelector onDateSelect={handleDateSelect} onBack={goBack} />;
+
       case BookingStep.SELECT_BUS:
         if (bookingDetails.departure && bookingDetails.arrival && bookingDetails.date) {
           return <BusList bookingDetails={bookingDetails} onBusSelect={handleBusSelect} onBack={goBack} />;
         }
-        break;
+        // If data is missing, fall back to the start.
+        return <TerminalSelector onRouteSelect={handleRouteSelect} />;
+        
       case BookingStep.SELECT_SEAT:
         if (bookingDetails.bus) {
-            return <SeatSelector bus={bookingDetails.bus} onSeatSelect={handleSeatSelect} onBack={goBack} />;
+          return <SeatSelector bus={bookingDetails.bus} onSeatSelect={handleSeatSelect} onBack={goBack} />;
         }
-        break;
+        return <TerminalSelector onRouteSelect={handleRouteSelect} />;
+
       case BookingStep.CONFIRM_BOOKING:
-        return <BookingSummary bookingDetails={bookingDetails} onConfirm={handleBookingConfirm} onBack={goBack} />;
+        if (bookingDetails.departure && bookingDetails.arrival && bookingDetails.date && bookingDetails.bus && bookingDetails.seats && typeof bookingDetails.totalPrice === 'number') {
+          return <BookingSummary bookingDetails={bookingDetails} onConfirm={handleBookingConfirm} onBack={goBack} />;
+        }
+        return <TerminalSelector onRouteSelect={handleRouteSelect} />;
+
       case BookingStep.PAYMENT:
-        return <Payment bookingDetails={bookingDetails} onPaymentSuccess={handlePaymentSuccess} onBack={goBack} />;
+        if (typeof bookingDetails.totalPrice === 'number') {
+          return <Payment bookingDetails={bookingDetails} onPaymentSuccess={handlePaymentSuccess} onBack={goBack} />;
+        }
+        return <TerminalSelector onRouteSelect={handleRouteSelect} />;
+
       case BookingStep.TICKET:
-        return <Ticket bookingDetails={bookingDetails} onNewBooking={restartBooking} />;
+        if (bookingDetails.departure && bookingDetails.arrival && bookingDetails.date && bookingDetails.bus && bookingDetails.seats) {
+          return <Ticket bookingDetails={bookingDetails} onNewBooking={restartBooking} />;
+        }
+        return <TerminalSelector onRouteSelect={handleRouteSelect} />;
+        
       default:
         return <TerminalSelector onRouteSelect={handleRouteSelect} />;
     }
-    // If a conditional case fails and breaks, we end up here, safely resetting the flow.
-    return <TerminalSelector onRouteSelect={handleRouteSelect} />;
   };
 
   return (
